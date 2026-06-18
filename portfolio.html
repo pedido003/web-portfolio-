@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Jerome Pedido</title>
+    <style>
+        body { background-color: #030712; color: #f3f4f6; font-family: 'Plus Jakarta Sans', sans-serif; padding: 50px 6%; }
+
+        h1 { text-align: center; margin-bottom: 50px; color: #06b6d4; }
+        
+        /* Folder Grid Container */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        /* Folder Style */
+        .folder-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 30px; border-radius: 12px; transition: 0.3s ease; text-decoration: none; color: #f3f4f6; }
+        .folder-card:hover { border-color: #06b6d4; transform: translateY(-10px); background: rgba(6, 182, 212, 0.05); }
+        .folder-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .folder-card h3 { margin-bottom: 10px; color: #fff; }
+        .folder-card p { font-size: 0.9rem; color: #9ca3af; line-height: 1.5; }
+        
+        .back-btn { display: block; width: 150px; margin: 40px auto; text-align: center; padding: 10px; background: #1f2937; color: white; text-decoration: none; border-radius: 6px; }
+    </style>
+</head>
+<body>
+
+    <h1>Project Archive</h1>
+
+    <div class="project-grid">
+        <a href="https://drive.google.com/drive/folders/1lvD8_DRdBfBT1VZxZlmDmek3m50kFcXy" class="folder-card">
+            <span class="folder-icon">📁</span>
+            <h3>B2B Lead Scraper</h3>
+            <p>Automated script para sa pag-scrape ng business emails gamit ang Python.</p>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/18WAHkCJupuL6LoN2IW9Pf1OgC6XUlHAw" class="folder-card">
+            <span class="folder-icon">📁</span>
+            <h3>Data Pipeline V1</h3>
+            <p>ETL pipeline na nagpoproseso ng malalaking data sets para sa market analysis.</p>
+        </a>
+
+        <a href="About.html" class="folder-card">
+            <span class="folder-icon">📁</span>
+            <h3>Scipt|Code|Python</h3>
+            <p>Ang mismong website na ito na binuo ko mula sa scratch.</p>
+        </a>
+    </div>
+
+
+    <a href="index.html" class="back-btn">Back to Home</a>
+
+</body>
+</html>
