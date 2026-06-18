@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Bitcoin Telegram Bot | Jerome Pedido</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased py-12 px-6">
+
+    <div class="max-w-4xl mx-auto">
+        <!-- BACK BUTTON -->
+        <a href="portfolio.html" class="text-amber-400 hover:text-amber-300 font-mono text-sm mb-8 inline-flex items-center gap-2 transition">
+            <i class="fa-solid fa-arrow-left"></i> [ Back ]
+        </a>
+
+        <!-- CASE STUDY TITLE -->
+        <header class="border-b border-gray-900 pb-8 mb-12">
+            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">[ Automation Script & API Integration ]</span>
+            <h1 class="text-3xl md:text-5xl font-black text-white mt-2 mb-4">
+                Bitcoin Live Price Monitor & Telegram Alert Bot
+            </h1>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                An automated Python script running 24/7 that fetches real-time crypto prices via the CoinGecko API and pushes instant data alerts to a Telegram Channel when volatility thresholds are met.
+            </p>
+        </header>
+
+        <!-- STUDY DETAILS METRICS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-gray-900/40 p-4 rounded-xl border border-gray-900">
+                <span class="text-xs font-mono text-gray-500 uppercase block">Role</span>
+                <strong class="text-white text-sm">Automation Engineer</strong>
+            </div>
+            <div class="bg-gray-900/40 p-4 rounded-xl border border-gray-900">
+                <span class="text-xs font-mono text-gray-500 uppercase block">Core Tech Stack</span>
+                <strong class="text-white text-sm">Python / Telebot / APIs</strong>
+            </div>
+            <div class="bg-gray-900/40 p-4 rounded-xl border border-gray-900">
+                <span class="text-xs font-mono text-gray-500 uppercase block">Interval Check</span>
+                <strong class="text-white text-sm">300 Seconds (5 Mins)</strong>
+            </div>
+        </div>
+
+        <!-- THE ACTUAL PYTHON SCRIPT ON YOUR PORTFOLIO -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-white mb-4 font-mono text-amber-400">&gt;_ Production Python Source Code</h3>
+            <div class="bg-black/80 border border-gray-800 rounded-xl p-5 shadow-2xl relative">
+                <div class="absolute top-3 right-4 flex gap-1.5">
+                    <span class="w-3 h-3 rounded-full bg-red-500/30"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/30"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/30"></span>
+                </div>
+                <div class="absolute top-3 left-4 text-xs font-mono text-gray-600">bitcoin_monitor.py</div>
+                <pre class="font-mono text-xs md:text-sm text-amber-300 overflow-x-auto leading-relaxed pt-6">
+import requests                               
+import telebot                                
+import time                                   
+                                              
+TOKEN = '8801809751:AAHDIDbYZA_lckzUV-fhD_IaMm...' 
+CHAT_ID = '8594831118'                        
+                                              
+bot = telebot.TeleBot(TOKEN)                  
+                                              
+def get_crypto_price(coin_id):                
+    url = f"https://api.coingecko.com/api/v3/simple/price?ids={coin_id}&vs_currencies=usd"
+    response = requests.get(url).json()       
+    return response[coin_id]['usd']           
+                                              
+coin = 'bitcoin'                              
+last_price = None                             
+                                              
+print(f"Monitoring {coin}...")                
+                                              
+while True:                                   
+    try:                                      
+        current_price = get_crypto_price(coin)
+        if last_price is not None:            
+            change = ((current_price - last_price) / last_price) * 100
+            if abs(change) >= 1.0:            
+                msg = f"⚠️ VOLATILITY ALERT: {coin.upper()} has changed by {change:.2s}%! Current Price: ${current_price}"
+                bot.send_message(CHAT_ID, msg)
+                                              
+        last_price = current_price            
+        print(f"Current {coin} price: ${current_price}")
+    except Exception as e:                    
+        print(f"Error: {e}")                  
+                                              
+    time.sleep(300)</pre>
+            </div>
+        </section>
+
+        <!-- VISUAL TELEGRAM ALERT SIMULATION -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-white mb-4 font-mono text-amber-400">&gt;_ Live Notification Preview</h3>
+            <div class="max-w-md bg-slate-900 border border-gray-800 rounded-2xl p-4 shadow-xl font-sans">
+                <div class="flex items-center gap-3 border-b border-gray-800 pb-3 mb-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white">Crypto Price Monitor Bot</h4>
+                        <p class="text-[11px] text-gray-500">bot service • active</p>
+                    </div>
+                </div>
+                <!-- Telegram Bubble Chat Simulator -->
+                <div class="bg-gray-950/60 p-3 rounded-xl border border-gray-900 text-sm space-y-1 max-w-[85%]">
+                    <p class="text-amber-400 font-mono text-xs">🚀 BITCOIN PRICE UPDATE</p>
+                    <p class="text-gray-300">Volatility threshold reached (>= 1.0% change).</p>
+                    <p class="text-white font-semibold">Current BTC/USD: <span class="text-emerald-400">$67,420</span></p>
+                    <span class="block text-[10px] text-gray-600 text-right font-mono">04:15 AM</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT RESOURCES & ASSETS -->
+        <section class="border-t border-gray-900 pt-8 mb-12">
+            <h3 class="text-sm font-mono text-gray-500 uppercase tracking-wider mb-4">[ Project Resources & Assets ]</h3>
+            <div class="flex flex-wrap gap-4">
+                <!-- GITHUB BUTTON (Ilagay mo rito link ng github script mo balang araw) -->
+                <a href="#" target="_blank" class="#">
+                    <i class="#"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-xs text-gray-600 font-mono">
+            Jerome Pedido Portfolio | Advanced Automation Services.
+        </footer>
+    </div>
+
+</body>
+</html>
